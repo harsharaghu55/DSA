@@ -1,5 +1,4 @@
 // print row wise and cloumn wise and column wise
-
 let mat = [
     [1,2,3],
     [4,5,6],
@@ -39,3 +38,30 @@ while(r < row && col >= 0){
     r++
     c--
 }
+
+// transpose of a squre matrix
+
+function findTranspose(mat:number[][]){
+    let rows = mat.length;
+    let cols = mat[0].length;
+    if(rows !== cols){
+        return "it is not a square matrix"
+    }
+
+    for(let r = 0; r < rows; r++){
+        for(let c = 0; c < cols; c++){
+            if(r < c){
+                swap(mat,r,c)
+            }
+        }
+    }
+}
+
+function swap(mat:number[][], r:number, c:number){
+    let temp = mat[r][c]
+    mat[r][c] = mat[c][r]
+    mat[c][r] = temp
+}
+
+// findTranspose(mat)
+// console.log(mat);
