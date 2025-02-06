@@ -41,7 +41,7 @@ while(r < row && col >= 0){
 
 // transpose of a squre matrix
 
-function findTranspose(mat:number[][]){
+function transposeMatrix(mat:number[][]){
     let rows = mat.length;
     let cols = mat[0].length;
     if(rows !== cols){
@@ -63,5 +63,16 @@ function swap(mat:number[][], r:number, c:number){
     mat[c][r] = temp
 }
 
-// findTranspose(mat)
+transposeMatrix(mat)
 // console.log(mat);
+function getMirrorMat(mat:number[][]){
+    for(let r = 0; r < row; r++){
+        for(let c = 0; c < col /2 ; c++){
+            let temp = mat[r][c]
+            mat[r][c] = mat[r][col - c -1]
+            mat[r][col - c -1] = temp
+        }
+    }
+}
+getMirrorMat(mat)
+console.log(mat)

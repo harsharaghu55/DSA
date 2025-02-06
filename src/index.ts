@@ -1,1 +1,1 @@
-import './2DArray/printMat'
+import './GCD/index'
