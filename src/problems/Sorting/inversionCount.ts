@@ -14,7 +14,7 @@ function mergeCount(arr:number[], start:number, end:number){
         }else{
             temp[k] = arr[i];
             i++;
-            k++
+            k++;
         }
     }
 
@@ -45,8 +45,9 @@ export function inversionCount(arr:number[], start:number, end:number):number{
     let leftInversionCount = inversionCount(arr, start, mid);
     let rightInversionCount = inversionCount(arr, mid + 1, end);
     let mergeInversionCount = mergeCount(arr, start, end);
+
     return leftInversionCount + rightInversionCount + mergeInversionCount;
 }
 
-let arr = [2,3,7,1,6,5];
+let arr = [45,10,15,25,50];
 console.log(inversionCount(arr, 0, arr.length - 1));
