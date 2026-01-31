@@ -1,4 +1,4 @@
-let x = [1,2,4,-6,7,8,9]
+let x = [-1,2,4,9,3,-8,7,-8,-9,-9]
 
 /** 
 ______________observations______________
@@ -21,4 +21,29 @@ function kadenseAlgo(array: number[]){
     return maxSum;
 }
 
+function largestSumSubArrayLength(array:number[]){
+    let maxSum = Number.NEGATIVE_INFINITY
+    let sum = 0;
+    let start = 0;
+    let left = -1;
+    let right = -1;
+    for(let i = 0; i < array.length; i++){
+        sum = sum + array[i];
+        if(sum > maxSum){
+            maxSum = Math.max(sum, maxSum);
+            right = i;
+            left = start;
+        }
+       
+        if(sum < 0){
+            sum = 0;
+            start = i+1;
+        }
+    }
+
+    return [left,right];
+}
+
+
 console.log(kadenseAlgo(x));
+console.log(largestSumSubArrayLength(x));
