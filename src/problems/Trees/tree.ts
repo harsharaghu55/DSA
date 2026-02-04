@@ -17,10 +17,14 @@
  */
 
 // Code for Binary tree
-class TreeNode{
+export class TreeNode{
     data:number | null = null
     left:TreeNode | null = null
     right:TreeNode | null = null
+
+    constructor(data:number){
+        this.data = data
+    }
 }
 
 /**
@@ -58,7 +62,7 @@ function postOrder(root:TreeNode | null):void{
     console.log(root.data)
 }
 
-// code for inOrder traversal using loop
+// iterative code for inOrder traversal using loop
 function loopInOrderTraversal(root:TreeNode){
     let stack:TreeNode[] = [];
     let node: TreeNode | null = root
@@ -73,3 +77,30 @@ function loopInOrderTraversal(root:TreeNode){
         }
     }
 }
+
+//construct binary tree from inOrder traversal and postOrder traversal
+export function buildTreeFromInAndOutOrder(inOrder:number[],postOrder:number[]):TreeNode|null{
+    let treeBuilderMap = new Map<number,number>()
+
+    function build(il:number,ir:number,pr:number){
+        if(il > ir) return null
+        
+        let rootIndexInOrder = treeBuilderMap.get(postOrder[pr]) as number
+        let rightSubTreeSize = ir - rootIndexInOrder
+        let  postOrderLeftSubtreeEnd = pr - rightSubTreeSize  - 1;
+        let root = new TreeNode(postOrder[pr])
+
+        root.left = build(il, rootIndexInOrder - 1, postOrderLeftSubtreeEnd)
+        root.right = build(rootIndexInOrder + 1, ir, pr-1)
+
+        return root;
+    }
+
+    inOrder.forEach((ele,index)=>{
+        treeBuilderMap.set(ele,index)
+    })
+
+    return build(0,6,6)
+}
+
+// console.log(JSON.stringify(buildTreeFromInAndOutOrder([4,2,7,5,1,3,6],[4,7,5,2,6,3,1])))
